@@ -1,0 +1,196 @@
+---
+import ContactCTA from '../ContactCTA.astro';
+import Hero from '../Hero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../../utils/i18n';
+
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<BaseLayout title={t.meta.title} description={t.meta.description}>
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero title={t.hero.title} tagline={t.hero.tagline} />
+
+			<section>
+				<h2 class="section-title">{t.about.title}</h2>
+
+				<div class="content stack gap-2 lg:gap-4">
+					{t.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">{t.experiences.title}</h2>
+
+				<div class="content">
+					<p><strong>{t.experiences.first.title}</strong></p>
+					<ul>
+						{t.experiences.first.list_tasks.map((l) => <li>{l}</li>)}
+					</ul>
+				</div>
+
+				<div class="content">
+					<p><strong>{t.experiences.second.title}</strong></p>
+					<ul>
+						{t.experiences.second.list_tasks.map((l) => <li>{l}</li>)}
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">
+					{t.selectedWork.title}
+				</h2>
+				<div class="content selected-work">
+					<div>
+						<h3>{t.selectedWork.first.title}</h3>
+						<p>{t.selectedWork.first.description}</p>
+					</div>
+					<div>
+						<h3>{t.selectedWork.second.title}</h3>
+						<p>{t.selectedWork.second.description}</p>
+					</div>
+				</div>
+				<div class="content selected-work">
+					<div>
+						<h3>{t.selectedWork.third.title}</h3>
+						<p>{t.selectedWork.third.description}</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">
+					{t.howIWork.title}
+				</h2>
+
+				<div class="content how-i-work">
+					{
+						t.howIWork.items.map((item) => (
+							<div>
+								<h3>{item.title}</h3>
+								<p>{item.description}</p>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">{t.next.title}</h2>
+
+				<div class="content">
+					{t.next.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">{t.more.title}</h2>
+				<div class="content more-about-me">
+					<div>
+						<h3>{t.more.volunteering}</h3>
+						<p><strong>{t.more.first_aider}</strong></p>
+					</div>
+
+					<div>
+						<h3>{t.more.education}</h3>
+						<p><strong>{t.more.university}</strong></p>
+						<p>{t.more.education_degree}</p>
+					</div>
+
+					<div>
+						<h3>{t.more.outside}</h3>
+						<p>{t.more.hobbies_list}</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	.about lu li {
+		margin: 5px;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content.how-i-work {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	.content h3 {
+		font-size: var(--text-xl);
+	}
+
+	.content.selected-work {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	.content.more-about-me {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

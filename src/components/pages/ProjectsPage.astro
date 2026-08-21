@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import ContactCTA from '../ContactCTA.astro';
+import Grid from '../Grid.astro';
+import Hero from '../Hero.astro';
+import PortfolioPreview from '../PortfolioPreview.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../../utils/i18n';
+
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const projects = (await getCollection('work'))
+	.filter((project) => project.data.locale === locale)
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 4);
+---
+
+<BaseLayout
+	title="Projects | Flavien Debar"
+	description="Learn about Flavien's most recent projects"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero title={t.projects.title} tagline={t.projects.tagline} align="start" />
+			<Grid variant="offset">
+				{
+					projects.map((project) => (
+						<li>
+							<PortfolioPreview project={project} />
+						</li>
+					))
+				}
+			</Grid>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>
