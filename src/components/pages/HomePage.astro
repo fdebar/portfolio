@@ -9,7 +9,7 @@ import Pill from '../Pill.astro';
 import PortfolioPreview from '../PortfolioPreview.astro';
 import Skills from '../Skills.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getLangFromUrl, useTranslations } from '../../utils/i18n';
+import { getLangFromUrl, useTranslations, getAssetPath } from '../../utils/i18n';
 
 const locale = getLangFromUrl(Astro.url);
 const t = useTranslations(locale);
@@ -32,7 +32,12 @@ const projects = (await getCollection('work'))
 					</div>
 				</Hero>
 
-				<img alt={t.homepage.image_alt} width="480" height="620" src="/assets/portrait.png" />
+				<img
+					alt={t.homepage.image_alt}
+					width="480"
+					height="620"
+					src={getAssetPath('/portrait.png')}
+				/>
 			</header>
 
 			<Skills />
@@ -105,7 +110,7 @@ const projects = (await getCollection('work'))
 		top: 0;
 		transform: translateY(-75%) translateX(-50%);
 		background:
-			url('/assets/backgrounds/noise.png') top center/220px repeat,
+			url('${getAssetPath('/backgrounds/noise.png')}') top center/220px repeat,
 			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
 			var(--gray-999);
 		background-blend-mode: overlay, normal, normal, normal;

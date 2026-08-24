@@ -3,26 +3,17 @@ import Icon from './Icon.astro';
 import type { iconPaths } from './IconPaths';
 import ThemeToggle from './ThemeToggle.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
-import { getLangFromUrl, useTranslations } from '../utils/i18n';
+import { getLangFromUrl, getLocalizedPath, useTranslations } from '../utils/i18n';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-/** Build a localized URL.
- * English is the default locale and therefore has no prefix.
- */
-const localizedPath = (path: string) => {
-	return lang === 'fr' ? `/fr${path}` : path;
-};
-
-/** Main menu items */
 const textLinks: { label: string; href: string }[] = [
-	{ label: t.navigation.home, href: localizedPath('/') },
-	{ label: t.navigation.work, href: localizedPath('/work/') },
-	{ label: t.navigation.about, href: localizedPath('/about/') },
+	{ label: t.navigation.home, href: getLocalizedPath('/') },
+	{ label: t.navigation.work, href: getLocalizedPath('/work/') },
+	{ label: t.navigation.about, href: getLocalizedPath('/about/') },
 ];
 
-/** Icon links to social media */
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
 	{ label: 'GitHub', href: 'https://github.com/fdebar', icon: 'github-logo' },
 	{
@@ -32,7 +23,6 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	},
 ];
 
-/** Test if a link is pointing to the current page. */
 const isCurrentPage = (href: string) => {
 	let pathname = Astro.url.pathname;
 

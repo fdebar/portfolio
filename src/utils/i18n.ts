@@ -25,9 +25,21 @@ export function getWorkSlug(id: string): string {
 	return id.replace(/\/(en|fr)$/, '');
 }
 
+export function getBasePath(path: string = ''): string {
+	const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+	const normalizedPath = path.replace(/^\/+/, '');
+
+	return normalizedPath ? `${base}/${normalizedPath}` : `${base}/`;
+}
+
 export function getLocalizedPath(path: string, locale: Locale): string {
-	if (locale === 'fr') return `/fr${path}`;
-	return path;
+	const localizedPath = locale === 'fr' ? `/fr${path}` : path;
+
+	return getBasePath(localizedPath);
+}
+
+export function getAssetPath(path: string): string {
+	return getBasePath(`/assets/${path}`);
 }
 
 export function getWorkUrl(id: string, locale: Locale): string {

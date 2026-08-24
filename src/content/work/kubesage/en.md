@@ -2,7 +2,7 @@
 title: KubeSage
 locale: en
 publishDate: 2026-08-17 00:00:00
-img: /assets/kubesage_logo.png
+img: kubesage_logo.png
 img_alt: KubeSage Logo
 description: |
   KubeSage is an AI-powered platform designed to accelerate Kubernetes incident investigation and troubleshooting.

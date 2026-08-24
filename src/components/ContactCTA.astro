@@ -1,7 +1,7 @@
 ---
 import CallToAction from './CallToAction.astro';
 import Icon from './Icon.astro';
-import { useTranslations } from '../utils/i18n';
+import { useTranslations, getAssetPath } from '../utils/i18n';
 
 const locale = Astro.currentLocale ?? 'en';
 const t = useTranslations(locale);
@@ -21,14 +21,14 @@ const t = useTranslations(locale);
 				<span>{t.contact.resume}</span>
 
 				<div class="links">
-					<a href="/assets/cv/Flavien-Debar-CV-EN.pdf" download>
+					<a href={getAssetPath('cv/Flavien-Debar-CV-EN.pdf')} download>
 						<Icon icon="file-pdf" size="1em" />
 						English CV
 					</a>
 
 					<span class="separator">·</span>
 
-					<a href="/assets/cv/Flavien-Debar-CV-FR.pdf" download>
+					<a href={getAssetPath('cv/Flavien-Debar-CV-FR.pdf')} download>
 						<Icon icon="file-pdf" size="1em" />
 						CV français
 					</a>
