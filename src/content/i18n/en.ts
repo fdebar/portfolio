@@ -16,7 +16,7 @@ export default {
 		title: 'Senior Platform Engineer specializing in Kubernetes and Cloud Infrastructure',
 		tagline:
 			'I design and build cloud-native platforms, automate infrastructure at scale, and develop tools that help engineering teams deliver software faster.',
-		image_alt: 'Flavien Debar smiling in a red plaid shirt and tortoise shell glasses',
+		image_alt: 'Flavien Debar smiling in a casual shirt',
 		pills: ['Platform Engineer', 'Cloud Native', 'AI & LLM'],
 		skills: {
 			first: {
