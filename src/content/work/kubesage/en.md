@@ -25,7 +25,7 @@ The main objective of the project is to reduce the time required to understand, 
 
 **Tech stack:** Python, FastAPI, React, Kubernetes, AWS, Terraform, Prometheus, Loki, Tempo, OpenTelemetry, Helm, ArgoCD, and AI-powered analysis.
 
-**Hosted on Github:** https://github.com/fdebar/kubesage
+**Hosted on GitHub:** <a href="https://github.com/fdebar/kubesage" target="_blank" rel="noopener noreferrer" data-analytics="demo_click">View on GitHub</a>
 
 ## Vision & Philosophy
 

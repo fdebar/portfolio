@@ -1,4 +1,5 @@
 ---
+import { track } from '../lib/analytics';
 import CallToAction from './CallToAction.astro';
 import Icon from './Icon.astro';
 import { useTranslations, getAssetPath } from '../utils/i18n';
@@ -21,14 +22,22 @@ const t = useTranslations(locale);
 				<span>{t.contact.resume}</span>
 
 				<div class="links">
-					<a href={getAssetPath('cv/Flavien-Debar-CV-EN.pdf')} download>
+					<a
+						href={getAssetPath('cv/Flavien-Debar-CV-EN.pdf')}
+						download
+						data-analytics="resume_download"
+					>
 						<Icon icon="file-pdf" size="1em" />
 						English CV
 					</a>
 
 					<span class="separator">·</span>
 
-					<a href={getAssetPath('cv/Flavien-Debar-CV-FR.pdf')} download>
+					<a
+						href={getAssetPath('cv/Flavien-Debar-CV-FR.pdf')}
+						download
+						data-analytics="resume_download"
+					>
 						<Icon icon="file-pdf" size="1em" />
 						CV français
 					</a>

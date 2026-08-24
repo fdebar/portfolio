@@ -25,7 +25,7 @@ L'objectif principal du projet est de réduire le temps nécessaire pour compren
 
 **Stack technique :** Python, FastAPI, React, Kubernetes, AWS, Terraform, Prometheus, Loki, Tempo, OpenTelemetry, Helm, ArgoCD et analyse assistée par IA.
 
-**Hébergé sur GitHub :** https://github.com/fdebar/kubesage
+**Hébergé sur GitHub :** <a href="https://github.com/fdebar/kubesage" target="_blank" rel="noopener noreferrer" data-analytics="demo_click">Voir sur GitHub</a>
 
 ## Vision & philosophie
 

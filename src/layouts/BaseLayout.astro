@@ -25,8 +25,26 @@ const lang = getLangFromUrl(Astro.url);
 		</div>
 
 		<script>
-			// Add “loaded” class once the document has completely loaded.
-			addEventListener('load', () => document.documentElement.classList.add('loaded'));
+			import { track } from '../lib/analytics';
+
+			addEventListener('load', () => {
+				document.documentElement.classList.add('loaded');
+			});
+
+			track('page_view');
+
+			document.addEventListener('click', (event) => {
+				const target = event.target as HTMLElement;
+				const link = target.closest<HTMLElement>('[data-analytics]');
+
+				if (!link) return;
+
+				const eventType = link.dataset.analytics;
+
+				if (eventType) {
+					track(eventType as Parameters<typeof track>[0]);
+				}
+			});
 		</script>
 
 		<style>
