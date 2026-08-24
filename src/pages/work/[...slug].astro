@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import WorkDetail from '../../components/WorkDetail.astro';
-import { useTranslations } from '../../utils/i18n';
+import { getLocalizedPath, useTranslations } from '../../utils/i18n';
 
 const t = useTranslations('en');
 
@@ -23,7 +23,11 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 ---
 
-<WorkDetail entry={entry} backHref="/work/" backLabel={t.navigation.work} />
+<WorkDetail
+	entry={entry}
+	backHref={getLocalizedPath('/work/', 'en')}
+	backLabel={t.navigation.work}
+/>
 
 <style>
 	header {

@@ -16,8 +16,7 @@ export default {
 		title: 'Senior Platform Engineer spécialisé en Kubernetes et infrastructures Cloud',
 		tagline:
 			"Je conçois et construis des plateformes cloud-native, automatise des infrastructures à grande échelle et développe des outils qui permettent aux équipes d'ingénierie de livrer plus rapidement.",
-		image_alt:
-			'Flavien Debar souriant, portant une chemise décontractée',
+		image_alt: 'Flavien Debar souriant, portant une chemise décontractée',
 		pills: ['Platform Engineer', 'Cloud Native', 'IA & LLM'],
 		skills: {
 			first: {

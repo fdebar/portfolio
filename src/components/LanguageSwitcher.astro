@@ -1,11 +1,21 @@
 ---
+import { getLocalizedPath, type Locale } from '../utils/i18n';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const pathname = Astro.url.pathname;
-const isFrench = pathname.startsWith('/fr');
 
-const englishUrl = pathname.replace(/^\/fr/, '') || '/';
-const frenchUrl = isFrench ? pathname : `/fr${pathname === '/' ? '' : pathname}`;
+const relativePath = pathname.startsWith(baseUrl)
+	? pathname.slice(baseUrl.length) || '/'
+	: pathname;
 
-const currentLocale = isFrench ? 'fr' : 'en';
+const isFrench = relativePath === '/fr' || relativePath.startsWith('/fr/');
+
+const currentLocale: Locale = isFrench ? 'fr' : 'en';
+
+const routePath = isFrench ? relativePath.replace(/^\/fr(?=\/|$)/, '') || '/' : relativePath;
+
+const englishUrl = getLocalizedPath(routePath, 'en');
+const frenchUrl = getLocalizedPath(routePath, 'fr');
 ---
 
 <nav class="language-switcher" aria-label="Language">

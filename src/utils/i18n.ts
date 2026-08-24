@@ -11,7 +11,7 @@ export const ui = {
 export const defaultLang: Locale = 'en';
 
 export function getLangFromUrl(url: URL): Locale {
-	const [, lang] = url.pathname.split('/');
+	const [, , lang] = url.pathname.split('/');
 
 	if (lang === 'fr') return 'fr';
 	return defaultLang;

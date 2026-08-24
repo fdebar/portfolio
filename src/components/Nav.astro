@@ -9,9 +9,9 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const textLinks: { label: string; href: string }[] = [
-	{ label: t.navigation.home, href: getLocalizedPath('/') },
-	{ label: t.navigation.work, href: getLocalizedPath('/work/') },
-	{ label: t.navigation.about, href: getLocalizedPath('/about/') },
+	{ label: t.navigation.home, href: getLocalizedPath('/', lang) },
+	{ label: t.navigation.work, href: getLocalizedPath('/work/', lang) },
+	{ label: t.navigation.about, href: getLocalizedPath('/about/', lang) },
 ];
 
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
