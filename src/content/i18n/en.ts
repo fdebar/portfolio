@@ -2,7 +2,7 @@ export default {
 	navigation: {
 		home: 'Home',
 		about: 'About',
-		work: 'Work',
+		work: 'Projects',
 		contact: 'Contact',
 	},
 	contact: {
@@ -13,7 +13,7 @@ export default {
 		resumeEn: 'English CV',
 	},
 	homepage: {
-		title: 'Senior Platform Engineer specializing in Kubernetes and Cloud Infrastructure',
+		title: 'Senior Platform Engineer specialized in Kubernetes and Cloud Infrastructure',
 		tagline:
 			'I design and build cloud-native platforms, automate infrastructure at scale, and develop tools that help engineering teams deliver software faster.',
 		image_alt: 'Flavien Debar smiling in a casual shirt',
@@ -43,7 +43,7 @@ export default {
 	meta: {
 		title: 'About | Flavien Debar',
 		description:
-			'Senior Platform & DevOps Engineer specializing in AWS, Kubernetes and Platform Engineering.',
+			'Senior Platform & DevOps Engineer specialized in AWS, Kubernetes and Platform Engineering.',
 	},
 	hero: {
 		title: 'Senior Platform & DevOps Engineer',
