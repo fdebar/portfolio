@@ -9,6 +9,9 @@ export default {
 		title: 'Envie de travailler ensemble ?',
 		button: 'Envoyez-moi un message',
 		resume: 'Télécharger mon CV',
+		copy: 'Copier',
+		copied: 'Copié !',
+		copyError: "Impossible de copier l'email",
 		resumeFr: 'CV français',
 		resumeEn: 'CV anglais',
 	},
@@ -22,7 +25,7 @@ export default {
 			first: {
 				title: 'Architecture Cloud Native',
 				description:
-					"Conception d'architectures cloud-native robustes, scalables et observables avec Kubernetes et AWS.",
+					"Conception d'architectures cloud-native robustes, scalables et observables avec Kubernetes.",
 			},
 			second: {
 				title: 'Platform Engineering',

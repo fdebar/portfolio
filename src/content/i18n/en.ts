@@ -9,6 +9,9 @@ export default {
 		title: 'Interested in working together?',
 		button: 'Send me a message',
 		resume: 'Download my resume',
+		copy: 'Copy',
+		copied: 'Copied!',
+		copyError: 'Unable to copy email',
 		resumeFr: 'French CV',
 		resumeEn: 'English CV',
 	},
@@ -22,7 +25,7 @@ export default {
 			first: {
 				title: 'Cloud-Native Architecture',
 				description:
-					'Designing robust, scalable and observable cloud-native architectures with Kubernetes and AWS.',
+					'Designing robust, scalable and observable cloud-native architectures with Kubernetes.',
 			},
 			second: {
 				title: 'Platform Engineering',

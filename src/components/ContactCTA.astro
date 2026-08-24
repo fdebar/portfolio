@@ -1,58 +1,115 @@
 ---
-import { track } from '../lib/analytics';
+import track from '../utils/track';
 import CallToAction from './CallToAction.astro';
 import Icon from './Icon.astro';
 import { useTranslations, getAssetPath } from '../utils/i18n';
 
 const locale = Astro.currentLocale ?? 'en';
 const t = useTranslations(locale);
+
+const email = 'flavien.debar@gmail.com';
 ---
 
 <aside>
 	<div class="content">
-		<h2>{t.contact.title}</h2>
+		<div class="contact">
+			<h2>{t.contact.title}</h2>
 
-		<div class="actions">
-			<CallToAction href="mailto:flavien.debar@gmail.com">
-				{t.contact.button}
-				<Icon icon="paper-plane-tilt" size="1.2em" />
-			</CallToAction>
+			<div class="email-wrapper">
+				<a class="email" href={`mailto:${email}`} data-analytics="contact_click">
+					{email}
+				</a>
 
-			<div class="resume-links">
-				<span>{t.contact.resume}</span>
+				<button
+					class="copy-button"
+					type="button"
+					data-copy-email={email}
+					data-copy-label={t.contact.copy}
+					data-copied-label={t.contact.copied}
+					data-copy-error={t.contact.copyError}
+					data-analytics="contact_click"
+					aria-label={t.contact.copy}
+				>
+					<Icon icon="copy" size="1.1em" />
+					<span class="copy-label">{t.contact.copy}</span>
+				</button>
+			</div>
+		</div>
 
-				<div class="links">
-					<a
-						href={getAssetPath('cv/Flavien-Debar-CV-EN.pdf')}
-						download
-						data-analytics="resume_download"
-					>
-						<Icon icon="file-pdf" size="1em" />
-						English CV
-					</a>
+		<div class="resume-links">
+			<span>{t.contact.resume}</span>
 
-					<span class="separator">·</span>
+			<div class="links">
+				<a
+					href={getAssetPath('cv/Flavien-Debar-CV-EN.pdf')}
+					download
+					data-analytics="resume_download"
+				>
+					<Icon icon="file-pdf" size="1em" />
+					English CV
+				</a>
 
-					<a
-						href={getAssetPath('cv/Flavien-Debar-CV-FR.pdf')}
-						download
-						data-analytics="resume_download"
-					>
-						<Icon icon="file-pdf" size="1em" />
-						CV français
-					</a>
-				</div>
+				<span class="separator">·</span>
+
+				<a
+					href={getAssetPath('cv/Flavien-Debar-CV-FR.pdf')}
+					download
+					data-analytics="resume_download"
+				>
+					<Icon icon="file-pdf" size="1em" />
+					CV français
+				</a>
 			</div>
 		</div>
 	</div>
 </aside>
+
+<script>
+	const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-email]');
+
+	copyButton?.addEventListener('click', async () => {
+		const email = copyButton.dataset.copyEmail;
+		const label = copyButton.querySelector('.copy-label');
+		const icon = copyButton.querySelector('svg');
+		const copyLabel = copyButton.dataset.copyLabel;
+		const copiedLabel = copyButton.dataset.copiedLabel;
+		const copyError = copyButton.dataset.copyError;
+
+		if (!email) return;
+
+		try {
+			await navigator.clipboard.writeText(email);
+
+			if (label) label.textContent = copiedLabel;
+			copyButton.classList.add('copied');
+
+			if (icon) {
+				icon.outerHTML = `
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="1.1em"
+						height="1.1em"
+						fill="currentColor"
+						viewBox="0 0 256 256"
+					>
+						<path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
+					</svg>
+				`;
+			}
+
+			setTimeout(() => {
+				if (label) label.textContent = copyLabel;
+				copyButton.classList.remove('copied');
+			}, 2000);
+		} catch {}
+	});
+</script>
 
 <style>
 	aside {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 3rem;
 		border-top: 1px solid var(--gray-800);
 		border-bottom: 1px solid var(--gray-800);
 		padding: 5rem 1.5rem;
@@ -63,8 +120,16 @@ const t = useTranslations(locale);
 	.content {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		width: 100%;
-		gap: 3rem;
+		gap: 2.5rem;
+	}
+
+	.contact {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
 	}
 
 	h2 {
@@ -73,11 +138,52 @@ const t = useTranslations(locale);
 		max-width: 15ch;
 	}
 
-	.actions {
+	.email-wrapper {
 		display: flex;
-		flex-direction: column;
 		align-items: center;
-		gap: 1.5rem;
+		justify-content: center;
+		gap: 0.75rem;
+		position: relative;
+	}
+
+	.email {
+		color: var(--gray-100);
+		font-size: var(--text-lg);
+		font-weight: 500;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.email:hover {
+		color: var(--accent);
+	}
+
+	.copy-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		border: 1px solid var(--gray-700);
+		border-radius: 0.5rem;
+		padding: 0.1rem 0.3rem;
+		background: var(--gray-900);
+		color: var(--gray-300);
+		font: inherit;
+		font-size: var(--text-xs);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease,
+			background-color 0.2s ease;
+	}
+
+	.copy-button:hover {
+		border-color: var(--gray-500);
+		color: var(--gray-100);
+	}
+
+	.copy-button.copied {
+		border-color: var(--accent);
+		color: var(--accent);
 	}
 
 	.resume-links {
@@ -87,7 +193,7 @@ const t = useTranslations(locale);
 		gap: 0.75rem;
 	}
 
-	.resume-links span {
+	.resume-links > span {
 		color: var(--gray-400);
 		font-size: var(--text-sm);
 	}
@@ -102,8 +208,8 @@ const t = useTranslations(locale);
 		display: flex;
 		align-items: center;
 		gap: 0.35rem;
-		text-decoration: none;
 		color: var(--gray-200);
+		text-decoration: none;
 		transition: opacity 0.2s ease;
 	}
 
@@ -126,9 +232,21 @@ const t = useTranslations(locale);
 			align-items: center;
 		}
 
+		.contact {
+			align-items: flex-start;
+		}
+
 		h2 {
 			font-size: var(--text-2xl);
 			text-align: left;
+		}
+
+		.email-wrapper {
+			justify-content: flex-start;
+		}
+
+		.resume-links {
+			align-items: flex-end;
 		}
 	}
 </style>
