@@ -42,6 +42,10 @@ export function getAssetPath(path: string): string {
 	return getBasePath(`/assets/${path}`);
 }
 
+export function getFaviconPath(path: string): string {
+	return getBasePath(`/favicon/${path}`);
+}
+
 export function getWorkUrl(id: string, locale: Locale): string {
 	const slug = getWorkSlug(id);
 
