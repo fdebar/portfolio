@@ -112,27 +112,6 @@ The portfolio is deployed as a static website using **GitHub Pages**.
 
 The deployment pipeline is handled through **GitHub Actions**, building the Astro application and publishing the generated `dist/` directory.
 
-Production deployments are versioned using Git tags, making it possible to associate a deployed website with a specific portfolio release.
-
-## 🤖 Featured Project — KubeSage
-
-[KubeSage](https://github.com/fdebar/kubesage) is an AI-assisted Kubernetes incident analysis platform designed to help engineers understand and troubleshoot production incidents.
-
-It combines:
-
-- Kubernetes
-- Prometheus
-- Loki
-- Grafana
-- Tempo
-- OpenTelemetry
-- GitOps
-- FastAPI
-- React
-- OpenAI-compatible LLMs
-
-The project reflects my interest in **Platform Engineering, observability and AI-driven operations**, and serves as a practical example of how I approach complex infrastructure problems end-to-end.
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
