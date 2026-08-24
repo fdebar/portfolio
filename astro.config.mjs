@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
+	base: '/portfolio',
 	i18n: {
-		locales: ['en', 'fr'],
 		defaultLocale: 'en',
+		locales: ['en', 'fr'],
 		routing: {
 			prefixDefaultLocale: false,
 		},
