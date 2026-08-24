@@ -7,10 +7,10 @@ img_alt: KubeSage Logo
 description: |
   KubeSage is an AI-powered platform designed to accelerate Kubernetes incident investigation and troubleshooting.
 tags:
-  - AI / LLM
-  - Kubernetes
   - Observability
   - Cloud Native
+  - Kubernetes
+  - AI / LLM
 ---
 
 ## AI-Assisted Kubernetes Incident Analysis Platform
