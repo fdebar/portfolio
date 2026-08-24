@@ -43,6 +43,9 @@ const isCurrentPage = (href: string) => {
 
 <nav>
 	<div class="menu-header">
+		<a class="site-title" href={getLocalizedPath('/', lang)}>
+			Flavien Debar
+		</a>
 		<menu-button>
 			<template>
 				<button class="menu-button" aria-expanded="false">
@@ -169,11 +172,15 @@ const isCurrentPage = (href: string) => {
 
 	.site-title {
 		display: flex;
-		gap: 0.5rem;
 		align-items: center;
 		line-height: 1.1;
-		color: var(--gray-0);
+		color: var(--gray-100);
 		text-decoration: none;
+		transition: color var(--theme-transition);
+	}
+
+	.site-title:hover {
+		color: var(--accent-regular);
 	}
 
 	.menu-button {
