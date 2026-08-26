@@ -29,8 +29,11 @@ const email = 'flavien.debar@gmail.com';
 					data-copy-error={t.contact.copyError}
 					data-analytics="contact_click"
 					aria-label={t.contact.copy}
+					title={t.contact.copy}
 				>
-					<Icon icon="copy" size="1.1em" />
+					<span class="copy-icon" aria-hidden="true">
+						<Icon icon="copy" size="1.1em" />
+					</span>
 					<span class="copy-label">{t.contact.copy}</span>
 				</button>
 			</div>
@@ -142,48 +145,97 @@ const email = 'flavien.debar@gmail.com';
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.75rem;
+		gap: 0.6rem;
 		position: relative;
 	}
 
 	.email {
+		display: inline-flex;
+		align-items: center;
 		color: var(--gray-100);
 		font-size: var(--text-lg);
 		font-weight: 500;
 		text-decoration: none;
-		transition: color 0.2s ease;
+		transition:
+			color 0.2s ease,
+			transform 0.2s ease;
 	}
 
 	.email:hover {
 		color: var(--accent);
 	}
 
+	.email:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 4px;
+		border-radius: 0.25rem;
+	}
+
 	.copy-button {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.4rem;
+		justify-content: center;
+		gap: 0.45rem;
+		min-width: 5.5rem;
+		min-height: 2.5rem;
+		padding: 0.5rem 0.85rem;
 		border: 1px solid var(--gray-700);
-		border-radius: 0.5rem;
-		padding: 0.1rem 0.3rem;
+		border-radius: 999px;
 		background: var(--gray-900);
 		color: var(--gray-300);
 		font: inherit;
 		font-size: var(--text-xs);
+		font-weight: 600;
 		cursor: pointer;
+		box-shadow: var(--shadow-sm);
 		transition:
+			transform 0.2s ease,
 			border-color 0.2s ease,
+			background-color 0.2s ease,
 			color 0.2s ease,
-			background-color 0.2s ease;
+			box-shadow 0.2s ease;
 	}
 
 	.copy-button:hover {
-		border-color: var(--gray-500);
+		transform: translateY(-1px);
+		border-color: var(--accent);
+		background: var(--gray-800);
 		color: var(--gray-100);
+		box-shadow: var(--shadow-md);
+	}
+
+	.copy-button:active {
+		transform: translateY(0);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.copy-button:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
 	}
 
 	.copy-button.copied {
 		border-color: var(--accent);
+		background: var(--gray-800);
 		color: var(--accent);
+	}
+
+	.copy-button.error {
+		border-color: var(--gray-600);
+		color: var(--gray-200);
+	}
+
+	.copy-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.copy-label {
+		white-space: nowrap;
 	}
 
 	.resume-links {
