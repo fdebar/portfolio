@@ -123,6 +123,14 @@ const t = useTranslations(locale);
 		margin: 5px;
 	}
 
+	.about :global(h1.title) {
+		font-size: var(--text-2xl);
+	}
+
+	.about :global(.tagline) {
+		font-size: var(--text-md);
+	}
+
 	img {
 		margin-top: 1.5rem;
 		border-radius: 1.5rem;
@@ -132,12 +140,13 @@ const t = useTranslations(locale);
 	section {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 1rem;
 		color: var(--gray-200);
 	}
 
 	.section-title {
 		grid-column-start: 1;
+		margin-bottom: 0.5rem;
 		font-size: var(--text-xl);
 		color: var(--gray-0);
 	}
@@ -146,25 +155,29 @@ const t = useTranslations(locale);
 		grid-column: 2 / 4;
 	}
 
+	.content + .content {
+		margin-top: 1.5rem;
+	}
+
 	.content.how-i-work {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1rem;
+		grid-template-columns: 1fr;
+		gap: 2rem;
 	}
 
 	.content h3 {
-		font-size: var(--text-xl);
+		font-size: var(--text-lg);
 	}
 
 	.content.selected-work {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1rem;
+		grid-template-columns: 1fr;
+		gap: 2rem;
 	}
 
 	.content.more-about-me {
 		display: grid;
-		gap: 1rem;
+		gap: 2rem;
 	}
 
 	.content :global(a) {
@@ -182,6 +195,11 @@ const t = useTranslations(locale);
 		.about {
 			display: grid;
 			grid-template-columns: 1fr 60% 1fr;
+			gap: 5rem;
+		}
+
+		.about :global(h1.title) {
+			font-size: var(--text-3xl);
 		}
 
 		.about > :global(:first-child) {
@@ -191,6 +209,24 @@ const t = useTranslations(locale);
 		section {
 			display: contents;
 			font-size: var(--text-lg);
+		}
+
+		.content.how-i-work {
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+		}
+
+		.content.selected-work {
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+		}
+
+		.content h3 {
+			font-size: var(--text-xl);
+		}
+
+		.content + .content {
+			margin-top: 0;
 		}
 	}
 </style>
